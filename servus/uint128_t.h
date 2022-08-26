@@ -95,17 +95,20 @@ public:
     }
 
     /**
+     * Default copy constructor. Needed for a 'trivially copyable' type.
+     */
+    uint128_t(uint128_t const&) = default;
+
+    /**
+     * Default copy assignement. Needed for a 'trivially copyable' type
+     */
+    uint128_t& operator=(const servus::uint128_t&) = default;
+
+    /**
      * @return true if the uint128_t is a generated universally unique
      *         identifier.
      */
     bool isUUID() const { return high() != 0; }
-    /** Assign another 128 bit value. */
-    uint128_t& operator=(const servus::uint128_t& rhs)
-    {
-        _high = rhs._high;
-        _low = rhs._low;
-        return *this;
-    }
 
     /** Assign another 64 bit value. */
     uint128_t& operator=(const uint64_t rhs)
@@ -367,7 +370,7 @@ inline uint128_t make_uint128(const std::string& string)
  * identifier.
  */
 SERVUS_API uint128_t make_UUID();
-}
+} // namespace servus
 
 namespace std
 {
@@ -387,6 +390,6 @@ inline string to_string(const servus::uint128_t& value)
 {
     return value.getString();
 }
-}
+} // namespace std
 
 #endif // SERVUS_UINT128_H
