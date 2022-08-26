@@ -25,6 +25,7 @@
 
 #include <functional> // function
 #include <memory>     // shared_ptr
+#include <stdexcept>  // runtime_error
 
 namespace servus
 {
@@ -152,6 +153,6 @@ private:
     class Impl;
     Impl* _impl;
 };
-}
+} // namespace servus
 
 #endif // SERVUS_SERIALIZABLE_H
